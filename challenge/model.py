@@ -7,23 +7,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 from sklearn.metrics import confusion_matrix, classification_report
 
-from .utils import get_period_day, is_high_season, get_min_diff
+from .utils import get_period_day, is_high_season, get_min_diff, get_TOP_10_FEATURES
 
 
 class DelayModel:
-
-    TOP_10_FEATURES = [
-        "OPERA_Latin American Wings", 
-        "MES_7",
-        "MES_10",
-        "OPERA_Grupo LATAM",
-        "MES_12",
-        "TIPOVUELO_I",
-        "MES_4",
-        "MES_11",
-        "OPERA_Sky Airline",
-        "OPERA_Copa Air"
-    ]
 
     def __init__(
         self
@@ -65,7 +52,7 @@ class DelayModel:
             pd.get_dummies(training_data['TIPOVUELO'], prefix = 'TIPOVUELO'), 
             pd.get_dummies(training_data['MES'], prefix = 'MES')], 
             axis = 1
-        )[self.TOP_10_FEATURES]
+        )[get_TOP_10_FEATURES()]
 
         if target_column is not None:
             target = training_data[target_column]
