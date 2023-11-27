@@ -15,3 +15,18 @@
 - The csv path to load `data` was corrected
 - The `test_model_predict` test fails with the error `AttributeError: 'NoneType' object has no attribute 'predict'` since the model is not being trained before predicting, so internally the model does not yet exist and is `None`
 - Regarding the choice of the test, it was also tested with a logistic regression and within the test `test_model_fit` the expected parameters were not reached.
+
+
+### Part II
+
+- The model was saved in a file in `./challenge/xgb_model.joblib`
+
+- The `predict` endpoint was completed, as well as classes for validation of the input data and auxiliary functions for data management.
+
+- Requirements: 
+Running the tests the following error was found
+`AttributeError: module 'anyio' has no attribute 'start_blocking_portal'`
+The error was within the startlette module version 0.20.4, to update it the fastapi version had to be updated since the current 0.86.0 depended on it.
+The latest version of fastapi (0.104.1) was installed. As well as the latest version of httpx (0.25.2) which emerged as a new requirement due to the upgrade.
+
+- The tests were executed successfully 
