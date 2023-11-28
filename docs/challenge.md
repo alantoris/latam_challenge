@@ -30,3 +30,23 @@ The error was within the startlette module version 0.20.4, to update it the fast
 The latest version of fastapi (0.104.1) was installed. As well as the latest version of httpx (0.25.2) which emerged as a new requirement due to the upgrade.
 
 - The tests were executed successfully 
+
+
+
+
+### Part III
+
+- Dockerfile was created and built locally
+
+- Docker container was started locally
+
+- Requirements modifications:
+locust 1.6 requires Flask 1.1.2, and this old version of flask is causing the following problem
+#ImportError: cannot import name 'escape' from 'jinja2'
+Locust was updated to 2.19.1, with that Flask was updated
+Which led to the following error, ImportError: cannot import name 'url_quote' from 'werkzeug.urls'
+Which was fixed by downgrading the Werkzeug library to 2.2.2
+
+- The url of the local container was entered and `make stress-test` was executed successfully.
+
+- The GCP configuration was not completed, nor the deployment of the API in the cloud
